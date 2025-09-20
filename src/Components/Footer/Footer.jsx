@@ -90,7 +90,7 @@ const Footer = () => {
             <FaGithub />
           </a>
           <a
-            href="https://www.instagram.com/elz_iko/"
+            href="https://www.instagram.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-pink-500 hover:text-pink-400 text-lg"
