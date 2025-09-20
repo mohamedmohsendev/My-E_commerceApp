@@ -19,18 +19,18 @@ const Footer = () => {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between mb-6">
-          <div className="w-full md:w-[75%] lg:w-[80%] mb-4 md:mb-0">
+        <div className="w-full mb-6">
+          <div className="max-w-2xl mx-auto">
             <div className="relative">
               <input
                 type="email"
                 id="email-address-icon"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm text-gray-800 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="name@mail.com"
+                className="w-full px-6 py-4 pr-32 border-2 border-gray-300 rounded-xl text-base text-gray-800 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200"
+                placeholder="Enter your email address"
               />
               <button
                 type="button"
-                className="absolute right-0 top-0 px-4 py-3 bg-green-600 text-white rounded-r-lg hover:bg-green-700 focus:outline-none"
+                className="absolute right-1 top-1 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 font-medium"
               >
                 Share Link
               </button>
