@@ -101,7 +101,7 @@ const Footer = () => {
 
         <div className="text-center text-gray-600 text-xs">
           <p>
-            © 2024 All Rights Reserved | Built by{" "}
+            © 2025 All Rights Reserved | Built by{" "}
             <span className="font-semibold text-green-600">Mohamed Mohsen</span>
           </p>
         </div>
