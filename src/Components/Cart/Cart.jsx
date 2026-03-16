@@ -20,75 +20,77 @@ export default function Cart() {
     <section>
       <div className="w-[90%] md:w-[80%] mx-auto py-9">
        
-        <h2 className="p-4 text-green-600 text-2xl font-mono text-center">
-          Total Price: {totalprice} EGP
-        </h2>
+        <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between items-center mb-8">
+          <h2 className="text-3xl font-extrabold text-gray-900 mb-4 md:mb-0">
+            Total: <span className="text-green-600">{totalprice}</span> <span className="text-xl text-gray-500 font-medium">EGP</span>
+          </h2>
+          <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+            <button
+              onClick={deleteAll}
+              className="py-3 px-6 rounded-2xl text-red-600 bg-red-50 hover:bg-red-100 hover:text-red-700 font-bold transition duration-300 flex items-center justify-center border border-red-100"
+            >
+              <FaTrashAlt className="mr-2" /> Clear Cart
+            </button>
+            <Link
+              to="/Payment"
+              className="py-3 px-8 rounded-2xl text-white bg-green-600 hover:bg-green-700 font-bold transition duration-300 shadow-md hover:shadow-lg hover:-translate-y-1 flex items-center justify-center"
+            >
+              Proceed to Checkout
+            </Link>
+          </div>
+        </div>
 
-       
-        <button
-          onClick={deleteAll}
-          className="p-3 mb-4 rounded-lg text-white text-2xl font-bold text-center mx-auto block w-full bg-red-500 hover:bg-red-600 transition duration-300 flex items-center justify-center"
-        >
-          <FaTrashAlt className="mr-2" /> Delete All
-        </button>
 
-      
-        <Link
-          to="/Payment"
-          className="p-3 mb-4 rounded-lg text-white text-2xl font-bold text-center mx-auto block bg-green-500 hover:bg-green-600 transition duration-300 flex items-center justify-center"
-        >
-          Proceed to Payment
-        </Link>
 
        
         {products?.map((item, idx) => {
           return (
-            <div key={idx} className="border-2 border-b-green-400 flex p-4 bg-slate-200 flex-wrap justify-center items-center mb-5 rounded-lg shadow-lg">
+            <div key={idx} className="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col md:flex-row justify-between items-center mb-5 gap-6">
               
-              <div className="md:w-1/6 w-full mb-4 md:mb-0">
-                <img src={item.product.imageCover} className="w-full rounded-lg" alt={item.product.title} />
+              <div className="md:w-1/6 w-full">
+                <div className="relative overflow-hidden rounded-2xl bg-gray-50 p-2">
+                  <img src={item.product.imageCover} className="w-full h-auto object-contain rounded-xl mix-blend-multiply" alt={item.product.title} />
+                </div>
               </div>
 
-         
-              <div className="md:w-4/6 w-full">
-                <h2 className="p-3 text-green-600 text-xl font-semibold">
-                  {item.product.title.split(" ").slice(0, 3).join(" ")}...
+              <div className="md:w-3/6 w-full text-center md:text-left flex flex-col items-center md:items-start">
+                <h2 className="text-xl md:text-2xl text-gray-900 font-bold mb-2">
+                  {item.product.title}
                 </h2>
-                <p className="p-3 text-xl">Price: {item.price} EGP</p>
+                <div className="text-2xl font-black text-green-600 mb-4">
+                  {item.price} <span className="text-sm text-gray-500 font-medium">EGP</span>
+                </div>
 
-              
                 <button
                   onClick={() => deleteproduct(item.product.id)}
-                  className="py-3 mb-5 md:mb-0 px-4 w-[50%] mx-auto block bg-red-600 rounded-2xl text-white flex items-center justify-center hover:bg-red-700 transition duration-300"
+                  className="py-2 px-6 rounded-xl text-red-500 hover:text-red-700 hover:bg-red-50 flex items-center justify-center transition duration-300 font-medium border border-transparent hover:border-red-100"
                 >
-                  {load2[item.product.id] ? <i className="fa-solid fa-spinner fa-spin"></i> : <FaTrashAlt />}
-                  <span className="ml-2">{load2[item.product.id] ? "Removing..." : "Remove"}</span>
+                  {load2[item.product.id] ? <i className="fa-solid fa-spinner fa-spin mr-2"></i> : <FaTrashAlt className="mr-2" />}
+                  <span>{load2[item.product.id] ? "Removing..." : "Remove"}</span>
                 </button>
               </div>
 
-            
-              <div className="md:w-1/6 w-full flex md:justify-between justify-center items-center mt-4 md:mt-0">
-               
-                <button
-                  className="p-2 text-xl text-white bg-green-600 rounded-lg hover:bg-green-700 transition duration-300 flex items-center justify-center"
-                  onClick={() => updataProduct(item.product.id, item.count + 1)}
-                >
-                  <FaPlus />
-                </button>
+              <div className="md:w-2/6 w-full flex justify-center md:justify-end items-center">
+                <div className="flex items-center bg-gray-50 rounded-2xl p-2 border border-gray-100">
+                  <button
+                    className={`${item.count === 0 ? "opacity-50 cursor-not-allowed" : "hover:bg-white hover:text-red-500 shadow-sm"} w-10 h-10 flex items-center justify-center text-gray-600 rounded-xl transition duration-300`}
+                    onClick={() => updataProduct(item.product.id, item.count - 1)}
+                    disabled={item.count === 0}
+                  >
+                    <FaMinus />
+                  </button>
+                  
+                  <div className="w-14 text-center text-xl font-bold text-gray-900">
+                    {load[item.product.id] ? <i className="fa-solid fa-spinner fa-spin text-green-500 text-lg"></i> : item.count}
+                  </div>
 
-              
-                <p className="p-2 text-xl text-white bg-green-600 rounded-lg mx-2 flex items-center justify-center">
-                  {load[item.product.id] ? <i className="fa-solid fa-spinner fa-spin"></i> : item.count}
-                </p>
-
-               
-                <button
-                  className={`${item.count === 0 ? "opacity-25" : ""} p-2 text-xl text-white bg-green-600 rounded-lg hover:bg-green-700 transition duration-300 flex items-center justify-center`}
-                  onClick={() => updataProduct(item.product.id, item.count - 1)}
-                  disabled={item.count === 0}
-                >
-                  <FaMinus />
-                </button>
+                  <button
+                    className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-white hover:text-green-600 shadow-sm rounded-xl transition duration-300"
+                    onClick={() => updataProduct(item.product.id, item.count + 1)}
+                  >
+                    <FaPlus />
+                  </button>
+                </div>
               </div>
             </div>
           );

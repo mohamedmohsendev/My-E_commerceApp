@@ -81,16 +81,19 @@ export default function Categories() {
               <div
                 onClick={() => getSubcat(ca._id)}
                 key={idx}
-                className="w-full md:w-1/2 lg:w-1/3 p-4 transform transition-all duration-300 hover:scale-105 hover:shadow-lg rounded-xl"
+                className="w-full md:w-1/2 lg:w-1/3 p-4 cursor-pointer"
               >
-                <div className="inner border-2 rounded-lg overflow-hidden shadow-lg hover:shadow-xl bg-white">
-                  <img
-                    style={{ objectFit: "cover" }}
-                    src={ca.image}
-                    className="w-full h-[300px] object-cover transition-transform duration-300 hover:scale-110"
-                    alt={ca.name}
-                  />
-                  <h2 className="p-3 text-center text-2xl text-green-700 font-semibold">{ca.name}</h2>
+                <div className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group relative">
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={ca.image}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      alt={ca.name}
+                    />
+                  </div>
+                  <div className="p-6 text-center bg-white relative z-10 before:absolute before:inset-x-0 before:-top-6 before:h-6 before:bg-gradient-to-t before:from-white before:to-transparent">
+                    <h2 className="text-2xl text-gray-900 font-bold group-hover:text-green-600 transition-colors">{ca.name}</h2>
+                  </div>
                 </div>
               </div>
             );
@@ -99,18 +102,18 @@ export default function Categories() {
 
         
         <div className="py-6 mt-10">
-          <h2 className="text-green-600 text-center font-mono text-3xl mb-6">Subcategories</h2>
+          <h2 className="text-gray-900 text-center font-extrabold text-3xl md:text-4xl mb-10">Explore <span className="text-green-600">Subcategories</span></h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {subcat ? (
               subcat.map((item, idx) => (
                 <div
                   key={idx}
-                  className="bg-white p-5 rounded-lg shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+                  className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl cursor-pointer group flex flex-col items-center justify-center text-center"
                 >
-                  <div className="flex justify-center items-center bg-gradient-to-r from-green-100 to-green-200 p-3 rounded-lg mb-4">
-                    <i className="fa fa-cogs text-3xl text-green-600"></i>
+                  <div className="w-16 h-16 flex justify-center items-center bg-green-50 rounded-2xl mb-4 group-hover:bg-green-600 transition-colors duration-300">
+                    <i className="fa fa-list text-2xl text-green-600 group-hover:text-white transition-colors duration-300"></i>
                   </div>
-                  <h3 className="text-center text-lg font-semibold text-gray-800">{item.name}</h3>
+                  <h3 className="text-lg font-bold text-gray-800 group-hover:text-green-700 transition-colors">{item.name}</h3>
                 </div>
               ))
             ) : (

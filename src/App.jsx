@@ -32,7 +32,7 @@ function App() {
       {path:"Brands",element:<ProtectedRoute><Brands/></ProtectedRoute>},
       {path:"Payment",element:<ProtectedRoute><Payment/></ProtectedRoute>},
       {path:"allorders",element:<ProtectedRoute><Allorders/></ProtectedRoute>},
-      {path:"Woshlistcom",element:<ProtectedRoute><Woshlistcom/></ProtectedRoute>},
+      {path:"Wishlist",element:<ProtectedRoute><Woshlistcom/></ProtectedRoute>},
       {path:"*",element:<ProtectedRoute><Notfound/></ProtectedRoute>},
       {path:"ProductDetails/:id",element:<ProtectedRoute><ProductDetails/></ProtectedRoute>},
     {path:"Login",element:<Login/>},

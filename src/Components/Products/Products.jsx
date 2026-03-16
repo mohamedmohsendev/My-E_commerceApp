@@ -90,62 +90,74 @@ export default function Products() {
         <div className="flex justify-center flex-wrap items-center gap-6 mt-8">
           {data.data.data.map((product, index) => (
             <div key={index} className="p-4 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-              <div className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl group relative">
+              <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-green-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group relative flex flex-col h-full">
                 <Link to={`/ProductDetails/${product.id}`}>
-                  <div className="inner p-4 bg-slate-100 cursor-pointer group">
-                    <img
-                      src={product.imageCover}
-                      alt="img"
-                      className="w-full h-64 object-cover rounded-md transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <div className="mt-4 text-center">
-                      <div className="text-gray-600">{product.category.name}</div>
-                      <div className="font-semibold text-gray-800 text-lg truncate">{product.title.split(" ").slice(0, 2).join(" ")}</div>
-                      <div className="flex justify-between items-center mt-2 text-gray-700">
-                        <div className="text-lg font-bold text-green-600">{product.price}</div>
-                        <div className="flex items-center">
-                          <i className="fa fa-star text-yellow-500 mr-2"></i>
-                          <span>{product.ratingsAverage}</span>
+                  <div className="inner p-5 bg-white cursor-pointer group rounded-t-2xl">
+                    <div className="relative overflow-hidden rounded-xl">
+                      <img
+                        src={product.imageCover}
+                        alt="img"
+                        className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+                    <div className="mt-5 text-left">
+                      <div className="text-sm font-medium text-green-600 mb-1 tracking-wider uppercase">{product.category.name}</div>
+                      <div className="font-bold text-gray-900 text-lg truncate mb-2 transition-colors group-hover:text-green-600">{product.title.split(" ").slice(0, 2).join(" ")}</div>
+                      <div className="flex justify-between items-center mt-3">
+                        <div className="text-xl font-extrabold text-gray-900">{product.price} <span className="text-sm font-normal text-gray-500">EGP</span></div>
+                        <div className="flex items-center bg-yellow-50 px-2 py-1 rounded-lg">
+                          <i className="fa fa-star text-yellow-500 text-sm mr-1"></i>
+                          <span className="font-semibold text-gray-700">{product.ratingsAverage}</span>
                         </div>
                       </div>
                     </div>
-                    <div className="absolute top-4 right-4 text-gray-600">
-                      <i
+                    <div className="absolute top-6 right-6 z-10">
+                      <button
                         onClick={(e) => {
                           e.stopPropagation();
                           e.preventDefault();
                           addtowish(e, product.id);
                         }}
-                        className={`${isInWishlist(product.id) ? "fa-solid" : "fa-regular"} fa-heart text-2xl`}
-                      ></i>
-                      {lod[product.id] ? <i className="fa-solid fa-spinner fa-spin text-green-500"></i> : ""}
+                        className="w-10 h-10 bg-white/80 backdrop-blur-md rounded-full shadow-md flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-white transition-all duration-300"
+                      >
+                        <i className={`${isInWishlist(product.id) ? "fa-solid text-red-500" : "fa-regular"} fa-heart text-xl`}></i>
+                      </button>
+                      {lod[product.id] && (
+                        <div className="absolute -top-1 -right-1">
+                          <i className="fa-solid fa-spinner fa-spin text-green-500"></i>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Link>
 
-                {/* Add to Cart Button */}
-                <button
-  onClick={() => specificaddtocart(product.id)}
-  className="py-3 px-6 w-full bg-green-600 rounded-2xl group hover:bg-green-800 duration-300 text-white my-2 font-semibold shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-3"
->
-  {/* إضافة أيقونة الدائرة المتحركة عند التحميل */}
-  {loading[product.id] ? (
-    <i className="fa-solid fa-spinner fa-spin text-white"></i>  // Spinner عند التحميل
-  ) : (
-    <>
-      <FaShoppingCart className="text-white" /> {/* أيقونة عربة التسوق */}
-      <span>Add to Cart</span> {/* نص الزر */}
-    </>
-  )}
-</button>
-
-                {/* Details Button */}
-                <Link
-                  to={`/ProductDetails/${product.id}`}
-                  className="flex items-center justify-center py-3 px-6 w-full bg-blue-600 rounded-2xl text-white font-semibold shadow-md mt-2 hover:bg-blue-800 transition-all duration-300"
-                >
-                  <i className="fa fa-info-circle mr-2"></i> Details
-                </Link>
+                <div className="px-5 pb-5">
+                  <div className="flex gap-2">
+                    {/* Add to Cart Button */}
+                    <button
+                      onClick={() => specificaddtocart(product.id)}
+                      className="flex-grow py-3 px-4 bg-green-600 rounded-xl group-hover:bg-green-700 text-white font-medium shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center space-x-2"
+                    >
+                      {loading[product.id] ? (
+                        <i className="fa-solid fa-spinner fa-spin text-white"></i>
+                      ) : (
+                        <>
+                          <FaShoppingCart className="text-white text-lg" />
+                          <span>Add to Cart</span>
+                        </>
+                      )}
+                    </button>
+                    
+                    {/* Details Button */}
+                    <Link
+                      to={`/ProductDetails/${product.id}`}
+                      className="py-3 px-4 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-xl font-medium transition-all duration-300 flex items-center justify-center"
+                      title="View Details"
+                    >
+                      <i className="fa fa-arrow-right"></i>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

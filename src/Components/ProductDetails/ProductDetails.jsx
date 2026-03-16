@@ -52,44 +52,65 @@ export default function ProductDetails() {
         <div className="flex flex-wrap justify-center gap-8 items-center">
 
           {/* Image Section */}
-          <div className="w-full md:w-1/3 p-5">
-            <img
-              src={data?.data.data.imageCover}
-              alt={data?.data.data.title}
-              className="w-full h-96 object-cover rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105"
-            />
+          <div className="w-full md:w-1/2 lg:w-5/12 p-5 flex justify-center">
+            <div className="relative p-4 bg-white rounded-3xl shadow-sm border border-gray-100 group">
+              <img
+                src={data?.data.data.imageCover}
+                alt={data?.data.data.title}
+                className="w-full max-w-sm h-auto object-contain rounded-2xl transform transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
           </div>
 
           {/* Product Details */}
-          <div className="w-full md:w-2/3 p-5">
-            <h2 className="text-4xl font-semibold text-green-600 mb-4">
-              {data?.data.data.title}
-            </h2>
-            <p className="text-lg text-gray-700 font-mono mb-6">
-              {data?.data.data.description}
-            </p>
-            <p className="text-xl text-gray-600 mb-4">
-              Category: <span className="font-semibold">{data?.data.data.category.name}</span>
-            </p>
-            <div className="flex justify-between items-center text-xl text-gray-800 mb-4">
-              <div className="font-bold text-green-600">{data?.data.data.price}</div>
-              <div className="flex items-center">
-                <i className="fa fa-star text-yellow-500 mr-2"></i>
-                <span>{data?.data.data.ratingsAverage}</span>
+          <div className="w-full md:w-1/2 lg:w-7/12 p-5">
+            <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+              <div className="mb-2">
+                <span className="inline-block px-3 py-1 bg-green-50 text-green-600 text-sm font-semibold rounded-full tracking-wide uppercase">
+                  {data?.data.data.category.name}
+                </span>
               </div>
-            </div>
+              
+              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
+                {data?.data.data.title}
+              </h2>
+              
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                {data?.data.data.description}
+              </p>
+              
+              <div className="flex flex-wrap items-center justify-between mb-8 pb-8 border-b border-gray-100 gap-4">
+                <div className="flex flex-col">
+                  <span className="text-sm text-gray-500 mb-1">Price</span>
+                  <div className="text-4xl font-black text-green-600">
+                    {data?.data.data.price} <span className="text-xl text-gray-500 font-medium">EGP</span>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col items-end">
+                  <span className="text-sm text-gray-500 mb-1">Rating</span>
+                  <div className="flex items-center bg-yellow-50 px-4 py-2 rounded-xl">
+                    <i className="fa fa-star text-yellow-500 text-xl mr-2"></i>
+                    <span className="text-xl font-bold text-gray-800">{data?.data.data.ratingsAverage}</span>
+                  </div>
+                </div>
+              </div>
 
-            {/* Add to Cart Button */}
-            <button
-              onClick={() => specificaddtocart(id)}
-              className="w-full py-3 px-6 bg-green-600 rounded-2xl text-white font-semibold hover:bg-green-800 transition-all duration-300 shadow-md hover:shadow-lg mt-6"
-            >
-              {check ? (
-                <i className="fa-solid fa-spinner fa-spin"></i>
-              ) : (
-                "Add to Cart"
-              )}
-            </button>
+              {/* Add to Cart Button */}
+              <button
+                onClick={() => specificaddtocart(id)}
+                className="w-full sm:w-auto min-w-[200px] py-4 px-8 bg-green-600 rounded-2xl text-white text-lg font-bold hover:bg-green-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex items-center justify-center space-x-3"
+              >
+                {check ? (
+                  <i className="fa-solid fa-spinner fa-spin text-xl"></i>
+                ) : (
+                  <>
+                    <i className="fa-solid fa-cart-plus text-xl"></i>
+                    <span>Add to Cart</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>

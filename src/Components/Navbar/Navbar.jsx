@@ -18,7 +18,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="z-50 bg-white dark:bg-gray-900 fixed w-full top-0 left-0 right-0 shadow-md">
+    <nav className="fixed w-full top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm border-b border-gray-200 dark:border-gray-800 transition-all duration-300">
       <div className="md:w-[90%] mx-auto py-4 flex justify-between items-center flex-wrap">
         <div className="flex justify-between items-center w-full md:w-auto">
           <NavLink to="/" className="text-3xl">
@@ -43,11 +43,11 @@ export default function Navbar() {
               <div className="flex items-center gap-4">
                 <li className="text-center relative">
                   <NavLink
-                    to="Woshlistcom"
+                    to="Wishlist"
                     className={({ isActive }) =>
                       isActive
-                        ? "flex items-center space-x-2 text-green-500"
-                        : "flex items-center space-x-2"
+                        ? "flex items-center space-x-2 text-green-600 font-medium transition-colors"
+                        : "flex items-center space-x-2 text-gray-600 hover:text-green-500 transition-colors"
                     }
                   >
                     <i className="fa-solid fa-heart text-xl"></i>{" "}
@@ -60,8 +60,8 @@ export default function Navbar() {
                     to="Cart"
                     className={({ isActive }) =>
                       isActive
-                        ? "flex items-center space-x-2 text-green-500"
-                        : "flex items-center space-x-2"
+                        ? "flex items-center space-x-2 text-green-600 font-medium transition-colors"
+                        : "flex items-center space-x-2 text-gray-600 hover:text-green-500 transition-colors"
                     }
                   >
                     <i className="fa-solid fa-cart-shopping text-xl"></i>{" "}
@@ -70,7 +70,7 @@ export default function Navbar() {
                       {numofitems === 0 && products?.length !== 0 ? (
                         <i className="fa-solid fa-spinner fa-spin"></i>
                       ) : (
-                        numofitems
+                          numofitems
                       )}
                     </div>
                   </NavLink>
@@ -84,8 +84,8 @@ export default function Navbar() {
                   to="Catigories"
                   className={({ isActive }) =>
                     isActive
-                      ? "flex items-center space-x-2 text-green-500"
-                      : "flex items-center space-x-2"
+                      ? "flex items-center space-x-2 text-green-600 font-medium transition-colors"
+                      : "flex items-center space-x-2 text-gray-600 hover:text-green-500 transition-colors"
                   }
                 >
                   <i className="fa-solid fa-th-list text-xl"></i>{" "}
@@ -97,8 +97,8 @@ export default function Navbar() {
                   to="Products"
                   className={({ isActive }) =>
                     isActive
-                      ? "flex items-center space-x-2 text-green-500"
-                      : "flex items-center space-x-2"
+                      ? "flex items-center space-x-2 text-green-600 font-medium transition-colors"
+                      : "flex items-center space-x-2 text-gray-600 hover:text-green-500 transition-colors"
                   }
                 >
                   <i className="fa-solid fa-cogs text-xl"></i>{" "}
@@ -110,8 +110,8 @@ export default function Navbar() {
                   to="Brands"
                   className={({ isActive }) =>
                     isActive
-                      ? "flex items-center space-x-2 text-green-500"
-                      : "flex items-center space-x-2"
+                      ? "flex items-center space-x-2 text-green-600 font-medium transition-colors"
+                      : "flex items-center space-x-2 text-gray-600 hover:text-green-500 transition-colors"
                   }
                 >
                   <i className="fa-solid fa-tags text-xl"></i>{" "}
@@ -123,8 +123,8 @@ export default function Navbar() {
                   to="allorders"
                   className={({ isActive }) =>
                     isActive
-                      ? "flex items-center space-x-2 text-green-500"
-                      : "flex items-center space-x-2"
+                      ? "flex items-center space-x-2 text-green-600 font-medium transition-colors"
+                      : "flex items-center space-x-2 text-gray-600 hover:text-green-500 transition-colors"
                   }
                 >
                   <i className="fa-solid fa-box text-xl"></i>{" "}
@@ -175,8 +175,8 @@ export default function Navbar() {
                     to="Login"
                     className={({ isActive }) =>
                       isActive
-                        ? "flex items-center space-x-2 text-green-500"
-                        : "flex items-center space-x-2"
+                        ? "flex items-center space-x-2 text-green-600 font-medium transition-colors"
+                        : "flex items-center space-x-2 text-gray-600 hover:text-green-500 transition-colors"
                     }
                   >
                     <i className="fa-solid fa-sign-in-alt text-xl"></i>{" "}
@@ -188,8 +188,8 @@ export default function Navbar() {
                     to="Register"
                     className={({ isActive }) =>
                       isActive
-                        ? "flex items-center space-x-2 text-green-500"
-                        : "flex items-center space-x-2"
+                        ? "flex items-center space-x-2 text-green-600 font-medium transition-colors"
+                        : "flex items-center space-x-2 text-gray-600 hover:text-green-500 transition-colors"
                     }
                   >
                     <i className="fa-solid fa-user-plus text-xl"></i>{" "}
@@ -199,7 +199,7 @@ export default function Navbar() {
               </>
             ) : (
               <li
-                className="text-center cursor-pointer flex items-center space-x-2 hover:text-green-500"
+                className="text-center cursor-pointer flex items-center space-x-2 text-gray-600 hover:text-red-500 transition-colors"
                 onClick={() => logout()}
               >
                 <i className="fa-solid fa-sign-out-alt text-xl"></i>{" "}

@@ -62,9 +62,9 @@ export default function Brands() {
       />
       
       {/* Brands Section */}
-      <section className="p-9 bg-gray-50">
-        <h2 className="text-center text-green-700 font-mono text-3xl mb-6">
-          All Brands
+      <section className="p-9 bg-gray-50 flex flex-col items-center">
+        <h2 className="text-gray-900 text-center font-extrabold text-3xl md:text-4xl mb-10">
+          Explore <span className="text-green-600">Brands</span>
         </h2>
 
         {/* Brands Grid */}
@@ -77,16 +77,20 @@ export default function Brands() {
                     toggleModal();
                     getspebrand(item._id);
                   }}
-                  className="inner p-4 border-2 rounded-lg hover:drop-shadow-2xl cursor-pointer duration-300 transform transition-all hover:scale-105"
+                  className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer flex flex-col h-full"
                 >
-                  <img
-                    src={item.image}
-                    className="w-full h-48 object-cover rounded-lg mb-4 transition-all duration-300 transform hover:scale-110"
-                    alt={item.name}
-                  />
-                  <h2 className="text-center text-lg font-semibold text-gray-800">
-                    {item.name}
-                  </h2>
+                  <div className="p-6 flex-grow flex items-center justify-center bg-white line-clamp-2">
+                    <img
+                      src={item.image}
+                      className="w-full max-h-48 object-contain transition-transform duration-500 group-hover:scale-110 mix-blend-multiply"
+                      alt={item.name}
+                    />
+                  </div>
+                  <div className="p-4 text-center bg-gray-50 border-t border-gray-100">
+                    <h2 className="text-lg font-bold text-gray-800 group-hover:text-green-600 transition-colors">
+                      {item.name}
+                    </h2>
+                  </div>
                 </div>
               </div>
             );

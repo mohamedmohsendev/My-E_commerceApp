@@ -101,9 +101,9 @@ export const Payment = () => {
   }
 
   return (
-    <section className="py-12 bg-gray-50">
-      <h2 className="text-center text-3xl text-green-600 font-semibold mb-6">Payment</h2>
-      <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <section className="py-12 bg-gray-50 min-h-[calc(100vh-140px)] flex flex-col justify-center">
+      <h2 className="text-center text-4xl font-extrabold text-gray-900 mb-8">Secure <span className="text-green-600">Checkout</span></h2>
+      <div className="max-w-lg w-full mx-auto p-8 bg-white rounded-3xl shadow-sm border border-gray-100">
     
         <div className="mb-5">
           <label htmlFor="city" className="block text-sm text-gray-600 font-medium mb-2">
@@ -114,7 +114,7 @@ export const Payment = () => {
             type="text"
             id="city"
             value={city}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+            className="w-full px-5 py-3 border border-gray-200 rounded-2xl focus:border-green-500 focus:ring-4 focus:ring-green-500/20 transition-all outline-none"
             placeholder="Enter your city"
           />
           {errors.city && <p className="text-red-500 text-xs mt-1">{errors.city}</p>}
@@ -130,7 +130,7 @@ export const Payment = () => {
             type="tel"
             id="phone"
             value={phone}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+            className="w-full px-5 py-3 border border-gray-200 rounded-2xl focus:border-green-500 focus:ring-4 focus:ring-green-500/20 transition-all outline-none"
             placeholder="Enter your phone number"
           />
           {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
@@ -146,26 +146,26 @@ export const Payment = () => {
             type="text"
             id="details"
             value={details}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+            className="w-full px-5 py-3 border border-gray-200 rounded-2xl focus:border-green-500 focus:ring-4 focus:ring-green-500/20 transition-all outline-none"
             placeholder="Enter delivery details"
           />
           {errors.details && <p className="text-red-500 text-xs mt-1">{errors.details}</p>}
         </div>
 
        
-        <div className="flex justify-between space-x-4">
+        <div className="flex flex-col sm:flex-row justify-between gap-4 mt-8">
           <button
             onClick={cashpayment}
-            className="w-1/2 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-500 transition duration-200 flex items-center justify-center"
+            className="w-full sm:w-1/2 py-3 bg-gray-100 text-gray-800 font-bold rounded-2xl hover:bg-gray-200 transition duration-300 flex items-center justify-center border border-gray-200 hover:-translate-y-1"
           >
-            <FaMoneyBillWave className="mr-2" /> Cash Payment
+            <FaMoneyBillWave className="mr-2 text-xl" /> Cash Payment
           </button>
 
           <button
             onClick={onlinepayment}
-            className="w-1/2 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:ring-2 focus:ring-green-500 transition duration-200 flex items-center justify-center"
+            className="w-full sm:w-1/2 py-3 bg-green-600 text-white font-bold rounded-2xl hover:bg-green-700 shadow-md hover:shadow-lg transition duration-300 flex items-center justify-center hover:-translate-y-1"
           >
-            <FaCreditCard className="mr-2" /> Online Payment
+            <FaCreditCard className="mr-2 text-xl" /> Online Payment
           </button>
         </div>
       </div>
